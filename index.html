@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>空燃比グラフアプリ</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="most_top">
+            <h1>空燃比グラフアプリ</h1>
+            <input type="button" id="test_btn" value="ランダム入力" onclick="pushTestButton();" />
+            <input type="button" id="save_btn" value="新しく作る" onclick="pushNewDataButton();" />
+            <input type="button" id="allClear_btn" value="全て消去" onclick="pushClearButton();" />
+        </div>
+        <br />
+
+        <div class="title">吸入空気量（gm/sec）</div>
+
+        <div class="top">
+            <table id="table1">
+                <tr class="header">
+                    <th class="item1"></th>
+                    <th class="item2">正常</th>
+                    <th class="item3">エアフロ特性ズレ</th>
+                    <th class="item4">エア吸い</th>
+                    <th class="item5">燃料ライン詰まり</th>
+                </tr>
+                <tr>
+                    <th class="item1">Pアイドル</th>
+                    <td class="value1"><input type="text" id="A0" /></td>
+                    <td class="value1"><input type="text" id="A1" /></td>
+                    <td class="value1"><input type="text" id="A2" /></td>
+                    <td class="value1"><input type="text" id="A3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">Dアイドル</th>
+                    <td class="value1"><input type="text" id="B0" /></td>
+                    <td class="value1"><input type="text" id="B1" /></td>
+                    <td class="value1"><input type="text" id="B2" /></td>
+                    <td class="value1"><input type="text" id="B3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">1000rpm</th>
+                    <td class="value1"><input type="text" id="C0" /></td>
+                    <td class="value1"><input type="text" id="C1" /></td>
+                    <td class="value1"><input type="text" id="C2" /></td>
+                    <td class="value1"><input type="text" id="C3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">1300rpm</th>
+                    <td class="value1"><input type="text" id="D0" /></td>
+                    <td class="value1"><input type="text" id="D1" /></td>
+                    <td class="value1"><input type="text" id="D2" /></td>
+                    <td class="value1"><input type="text" id="D3" /></td>
+                </tr>
+            </table>
+            <canvas id="chart1" width="450" height="280"></canvas>
+        </div>
+        <br />
+
+        <div class="title">F/B補正値（%）</div>
+
+        <div class="middle">
+            <table id="table2">
+                <tr class="header">
+                    <th class="item1"></th>
+                    <th class="item2">正常</th>
+                    <th class="item3">エアフロ特性ズレ</th>
+                    <th class="item4">エア吸い</th>
+                    <th class="item5">燃料ライン詰まり</th>
+                </tr>
+                <tr>
+                    <th class="item1">Pアイドル</th>
+                    <td class="value1"><input type="text" id="E0" /></td>
+                    <td class="value1"><input type="text" id="E1" /></td>
+                    <td class="value1"><input type="text" id="E2" /></td>
+                    <td class="value1"><input type="text" id="E3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">Dアイドル</th>
+                    <td class="value1"><input type="text" id="F0" /></td>
+                    <td class="value1"><input type="text" id="F1" /></td>
+                    <td class="value1"><input type="text" id="F2" /></td>
+                    <td class="value1"><input type="text" id="F3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">1000rpm</th>
+                    <td class="value1"><input type="text" id="G0" /></td>
+                    <td class="value1"><input type="text" id="G1" /></td>
+                    <td class="value1"><input type="text" id="G2" /></td>
+                    <td class="value1"><input type="text" id="G3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">1300rpm</th>
+                    <td class="value1"><input type="text" id="H0" /></td>
+                    <td class="value1"><input type="text" id="H1" /></td>
+                    <td class="value1"><input type="text" id="H2" /></td>
+                    <td class="value1"><input type="text" id="H3" /></td>
+                </tr>
+            </table>
+            <canvas id="chart2" width="450" height="280"></canvas>
+        </div>
+        <br />
+
+        <div class="title">燃料噴射量（μSec）</div>
+
+        <div class="bottom">
+            <table id="table3">
+                <tr class="header">
+                    <th class="item1"></th>
+                    <th class="item2">正常</th>
+                    <th class="item3">エアフロ特性ズレ</th>
+                    <th class="item4">エア吸い</th>
+                    <th class="item5">燃料ライン詰まり</th>
+                </tr>
+                <tr>
+                    <th class="item1">Pアイドル</th>
+                    <td class="value1"><input type="text" id="I0" /></td>
+                    <td class="value1"><input type="text" id="I1" /></td>
+                    <td class="value1"><input type="text" id="I2" /></td>
+                    <td class="value1"><input type="text" id="I3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">Dアイドル</th>
+                    <td class="value1"><input type="text" id="J0" /></td>
+                    <td class="value1"><input type="text" id="J1" /></td>
+                    <td class="value1"><input type="text" id="J2" /></td>
+                    <td class="value1"><input type="text" id="J3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">1000rpm</th>
+                    <td class="value1"><input type="text" id="K0" /></td>
+                    <td class="value1"><input type="text" id="K1" /></td>
+                    <td class="value1"><input type="text" id="K2" /></td>
+                    <td class="value1"><input type="text" id="K3" /></td>
+                </tr>
+                <tr>
+                    <th class="item1">1300rpm</th>
+                    <td class="value1"><input type="text" id="L0" /></td>
+                    <td class="value1"><input type="text" id="L1" /></td>
+                    <td class="value1"><input type="text" id="L2" /></td>
+                    <td class="value1"><input type="text" id="L3" /></td>
+                </tr>
+            </table>
+            <canvas id="chart3" width="450" height="280"></canvas>
+        </div>
+        <br />
+
+        <script>
+            const inputAllElements = document.querySelectorAll("table input");
+            const inputAllElementsArray = Array.from(inputAllElements);
+
+            const inputTable1Elements = document.querySelectorAll("#table1 input");
+            const inputTable1ElementsArray = Array.from(inputTable1Elements);
+
+            const inputTable2Elements = document.querySelectorAll("#table2 input");
+            const inputTable2ElementsArray = Array.from(inputTable2Elements);
+
+            const inputTable3Elements = document.querySelectorAll("#table3 input");
+            const inputTable3ElementsArray = Array.from(inputTable3Elements);
+        </script>
+        <script src="mainScript.js"></script>
+        <script src="subScript.js"></script>
+    </body>
+</html>
