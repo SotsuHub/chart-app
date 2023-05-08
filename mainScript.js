@@ -39,8 +39,8 @@ const setChartData = (array) => {
             {
                 label: "燃料ライン詰まり",
                 data: array[3],
-                borderColor: "#dd0902",
-                backgroundColor: "#dd0902",
+                borderColor: "#ff2c02",
+                backgroundColor: "#ff2c02",
             },
         ],
     };
