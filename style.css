@@ -9,7 +9,7 @@ h1 {
     padding: 10px;
     margin: 10px;
     width: 350px;
-    color: #494949;
+    color: #4b4747;
     background: -webkit-linear-gradient(to right, rgb(137, 184, 255), transparent);
     background: linear-gradient(to right, rgb(137, 184, 255), transparent);
     color: #545454;
@@ -53,6 +53,7 @@ table {
 .title {
     font-size: medium;
     font-weight: bold;
+    color: #4b4747;
     text-align: left;
     padding: 10px;
 }
@@ -94,10 +95,10 @@ input[type="text"] {
     cursor: text;
 }
 .header .item2 {
-    background: #9a8d79;
+    background: #c0b097;
 }
 .header .item3 {
-    background: #56c278;
+    background: #66e88f;
 }
 .header .item4 {
     background: #66dfe5;
