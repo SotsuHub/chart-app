@@ -21,7 +21,7 @@ input[type="button"] {
     border: #aaa;
     width: 110px;
     height: 40px;
-    margin: 10px;
+    margin: 8px;
 }
 input[type="button"]:hover {
     background-color: #445b7f;
@@ -51,7 +51,7 @@ table {
     height: 180px;
 }
 .title {
-    font-size: small;
+    font-size: medium;
     font-weight: bold;
     text-align: center;
     padding: 10px;
@@ -103,5 +103,5 @@ input[type="text"] {
     background: #66dfe5;
 }
 .header .item5 {
-    background: #dd0902;
+    background: #ff2c02;
 }
