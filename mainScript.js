@@ -118,7 +118,8 @@ const inputTestData = () => {
 const random = (max) => {
     // 引数が整数か小数点ありかを判断しそれに応じたランダム値を返す
     if (Number.isInteger(max)) {
-        return Math.floor(Math.random() * max);
+        let result = Math.floor(Math.random() * max);
+        return result.toFixed(2); 
     } else {
         return Math.random() * max;
     }
