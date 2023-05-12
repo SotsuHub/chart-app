@@ -8,7 +8,6 @@ let myChart_table2;
 let myChart_table3;
 
 const setChartData = (array) => {
-    // グラフデータ設定
     chartData = {
         labels: ["Pアイドル", "Dアイドル", "1000rpm", "1300rpm"],
         datasets: [
@@ -21,14 +20,14 @@ const setChartData = (array) => {
             {
                 label: "エアフロ特性ずれ",
                 data: array[1],
-                borderColor: "#66e88f",
-                backgroundColor: "#66e88f",
+                borderColor: "#5fda86",
+                backgroundColor: "#5fda86",
             },
             {
                 label: "エア吸い",
                 data: array[2],
-                borderColor: "#66dfe5",
-                backgroundColor: "#66dfe5",
+                borderColor: "#71eeff",
+                backgroundColor: "#71eeff",
             },
             {
                 label: "燃料ライン詰まり",
@@ -40,13 +39,7 @@ const setChartData = (array) => {
     };
 };
 
-const setChartOptions = (max, min, step) => {
-    // グラフオプション設定
-    /**
-    * @param {number} max-Y軸の最大値
-    * @param {number} min-Y軸の最小値
-    * @param {number} step-Y軸の目盛間隔
-    */
+const setChartOptions = (min, max, step) => {
     chartOptions = {
         responsive: false,
         plugins: {
@@ -66,58 +59,57 @@ const setChartOptions = (max, min, step) => {
     };
 };
 
-const settingChart = (tableType) => {
+const settingChart = (tableId) => {
     // グラフを出力する
-    if (tableType === "table1") {
-        setChartData(loadData(tableType));
-        setChartOptions(20, 0, 1);
+    if (tableId === "table1") {
+        setChartData(loadData(tableId));
+        setChartOptions(0, 6, 1);
         return drawChart(chartData, chartOptions, "chart1");
     }
-    if (tableType === "table2") {
+    if (tableId === "table2") {
         setChartData(loadData("table2"));
-        setChartOptions(40, -30, 10);
+        setChartOptions(-30, 30, 10);
         return drawChart(chartData, chartOptions, "chart2");
     }
-    if (tableType === "table3") {
+    if (tableId === "table3") {
         setChartData(loadData("table3"));
-        setChartOptions(6000, 0, 1000);
+        setChartOptions(0, 5000, 1000);
         return drawChart(chartData, chartOptions, "chart3");
     }
 };
 
 const loadData = (obj) => {
     // ローカルストレージを読み込む
-    let json = localStorage.getItem(obj);
+    const json = localStorage.getItem(obj);
     // ローカルストレージのJSONを配列で返す
     return JSON.parse(json);
 };
 
 const drawChart = (data, options, chartType) => {
     // グラフを描画する
-    let context = document.getElementById(chartType).getContext("2d");
-    window.myChart = new Chart(context, {
+    const context = document.getElementById(chartType).getContext("2d");
+    return new Chart(context, {
         type: "line",
         data: data,
         options: options,
     });
-    return window.myChart;
 };
 
 const inputTestData = () => {
     //ランダムなテストデータをテーブルに入力する
     for (let i = 0; i <= 3; i++) {
-        document.getElementById(`A${i}`).value = random(19.9);
-        document.getElementById(`B${i}`).value = random(19.9);
-        document.getElementById(`C${i}`).value = random(19.9);
-        document.getElementById(`D${i}`).value = random(19.9);
-        document.getElementById(`E${i}`).value = random(40);
-        document.getElementById(`F${i}`).value = random(40);
-        document.getElementById(`G${i}`).value = random(40);
-        document.getElementById(`H${i}`).value = random(40);
-        document.getElementById(`I${i}`).value = random(6000);
-        document.getElementById(`J${i}`).value = random(6000);
-        document.getElementById(`K${i}`).value = random(6000);
-        document.getElementById(`L${i}`).value = random(6000);
+        document.getElementById(`A${i}`).value = random(5.9);
+        document.getElementById(`B${i}`).value = random(5.9);
+        document.getElementById(`C${i}`).value = random(5.9);
+        document.getElementById(`D${i}`).value = random(5.9);
+        document.getElementById(`E${i}`).value = random(30);
+        document.getElementById(`F${i}`).value = random(30);
+        document.getElementById(`G${i}`).value = random(30);
+        document.getElementById(`H${i}`).value = random(30);
+        document.getElementById(`I${i}`).value = random(5000);
+        document.getElementById(`J${i}`).value = random(5000);
+        document.getElementById(`K${i}`).value = random(5000);
+        document.getElementById(`L${i}`).value = random(5000);
     }
 };
 
@@ -131,68 +123,42 @@ const random = (max) => {
     }
 };
 
-const getTableDataToSave = (tableType) => {
+const saveTableDataToLocalStorage = (tableId) => {
     //テーブルの値をローカルストレージに保存する
-    let data = [];
-    let table = document.getElementById(tableType);
-    let tableRow = table.querySelectorAll("tr");
+    let table = document.getElementById(tableId);
+    const tableData = { col1: [], col2: [], col3: [], col4: [] };
 
-    tableRow.forEach((tr, trIndex) => {
-        // テーブルの1行(trタグ)毎に処理
-        let cells = tr.querySelectorAll("td"); // セル(td)のNodeListを取得
-        if (cells.length != 0) {
-            // テーブルのヘッダー部分は飛ばす
-
-            let d1 = []; // テーブルの行(tr)のデータを格納する配列
-            let d2 = []; // テーブルの行(tr)のデータを格納する配列
-            let d3 = []; // テーブルの行(tr)のデータを格納する配列
-            let d4 = []; // テーブルの行(tr)のデータを格納する配列
-
-            cells.forEach((td, tdIndex) => {
-                // セル(td)毎に処理
-
-                console.log(
-                    `${td.firstElementChild.value}:${tdIndex}:${trIndex}`
-                );
-
-                if (td.innerHTML.indexOf("input") != -1) {
-                    // セルがinputだった場合
-                    d1.push(td.firstElementChild.value);
-                    d2.push(td.firstElementChild.value);
-                    d3.push(td.firstElementChild.value);
-                    d4.push(td.firstElementChild.value);
-                } else {
-                    d1.push("");
+    for (let rowIndex = 1; rowIndex < table.rows.length; rowIndex++) {
+        // 各行のループ処理(trタグ)
+        const tr = table.rows[rowIndex];
+        for (let colIndex = 1; colIndex < tr.cells.length; colIndex++) {
+            // 各列のループ処理(tdタグ)
+            const td = tr.cells[colIndex];
+            const input = td.querySelector("input");
+            if (input) {
+                // input要素がある場合は配列に追加
+                switch (colIndex) {
+                    case 1:
+                        tableData.col1.push(input.value);
+                        break;
+                    case 2:
+                        tableData.col2.push(input.value);
+                        break;
+                    case 3:
+                        tableData.col3.push(input.value);
+                        break;
+                    case 4:
+                        tableData.col4.push(input.value);
+                        break;
+                    default:
+                        break;
                 }
-            });
-            data.push(d1);
-            data.push(d2);
-            data.push(d3);
-            data.push(d4);
+            }
         }
-        console.log("終わりの区切り");
-    });
-
-    // tableRow.forEach((tr) => {
-    //     // テーブルの1行(trタグ)毎に処理
-    //     let cells = tr.querySelectorAll("td"); // セル(td)のNodeListを取得
-    //     if (cells.length != 0) {
-    //         // テーブルのヘッダー部分は飛ばす
-    //         let d = []; // テーブルの行(tr)のデータを格納する配列
-    //         cells.forEach((td, index) => {
-    //             // セル(td)毎に処理
-    //             if (td.innerHTML.indexOf("input") != -1) {
-    //                 // セルがinputだった場合
-    //                 d.push(td.firstElementChild.value);
-    //             } else {
-    //                 d.push("");
-    //             }
-    //         });
-    //         data.push(d);
-    //     }
-    // });
-    let json = JSON.stringify(data, undefined, 1);
-    localStorage.setItem(tableType, json);
+    }
+    const data = Object.values(tableData);
+    const json = JSON.stringify(data, undefined, 1);
+    localStorage.setItem(tableId, json);
 };
 
 const inputTableData = () => {
@@ -272,9 +238,9 @@ myChart_table3 = settingChart("table3");
 // 👇ランダム入力ボタン処理
 function pushTestButton() {
     inputTestData();
-    getTableDataToSave("table1");
-    getTableDataToSave("table2");
-    getTableDataToSave("table3");
+    saveTableDataToLocalStorage("table1");
+    saveTableDataToLocalStorage("table2");
+    saveTableDataToLocalStorage("table3");
 }
 
 // 👇新しいグラフボタン処理
@@ -282,9 +248,9 @@ function pushNewDataButton() {
     // すでにグラフが生成されている場合は、グラフを破棄する
     myChartExists([myChart_table1, myChart_table2, myChart_table3]);
     // テーブルデータをローカルストレージに保存する
-    getTableDataToSave("table1");
-    getTableDataToSave("table2");
-    getTableDataToSave("table3");
+    saveTableDataToLocalStorage("table1");
+    saveTableDataToLocalStorage("table2");
+    saveTableDataToLocalStorage("table3");
     // グラフを更新する
     myChart_table1 = settingChart("table1");
     myChart_table2 = settingChart("table2");
@@ -296,9 +262,9 @@ function pushClearButton() {
     // テーブルの値を消去する
     inputAllElementsArray.forEach((element) => (element.value = ""));
     // テーブルデータをローカルストレージに保存する
-    getTableDataToSave("table1");
-    getTableDataToSave("table2");
-    getTableDataToSave("table3");
+    saveTableDataToLocalStorage("table1");
+    saveTableDataToLocalStorage("table2");
+    saveTableDataToLocalStorage("table3");
     // 新しいグラフボタン処理
     pushNewDataButton();
 }
