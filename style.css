@@ -4,11 +4,14 @@
     gap: 5px;
 }
 h1 {
+    display: flex;
+    align-items: center;
     font-size: large;
     font-weight: bold;
+    white-space: nowrap;
     padding: 10px;
     margin: 10px;
-    width: 350px;
+    width: 200px;
     color: #4b4747;
     background: -webkit-linear-gradient(to right, rgb(137, 184, 255), transparent);
     background: linear-gradient(to right, rgb(137, 184, 255), transparent);
@@ -25,6 +28,11 @@ input[type="button"] {
 }
 input[type="button"]:hover {
     background-color: #445b7f;
+}
+img {
+    width: 47.5px;
+    height: 80px;
+    margin: 10px;
 }
 .top {
     display: flex;
@@ -98,10 +106,10 @@ input[type="text"] {
     background: #c0b097;
 }
 .header .item3 {
-    background: #66e88f;
+    background: #5fda86;
 }
 .header .item4 {
-    background: #66dfe5;
+    background: #71eeff;
 }
 .header .item5 {
     background: #ff7364;
