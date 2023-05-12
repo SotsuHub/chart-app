@@ -40,8 +40,13 @@ const setChartData = (array) => {
     };
 };
 
-const setChartOptions = (max, step) => {
+const setChartOptions = (max, min, step) => {
     // グラフオプション設定
+    /**
+    * @param {number} max-Y軸の最大値
+    * @param {number} min-Y軸の最小値
+    * @param {number} step-Y軸の目盛間隔
+    */
     chartOptions = {
         responsive: false,
         plugins: {
@@ -51,7 +56,7 @@ const setChartOptions = (max, step) => {
         },
         scales: {
             y: {
-                min: 0,
+                min: min,
                 max: max,
                 ticks: {
                     stepSize: step,
@@ -65,17 +70,17 @@ const settingChart = (tableType) => {
     // グラフを出力する
     if (tableType === "table1") {
         setChartData(loadData(tableType));
-        setChartOptions(1.2, 0.1);
+        setChartOptions(20, 0, 1);
         return drawChart(chartData, chartOptions, "chart1");
     }
     if (tableType === "table2") {
         setChartData(loadData("table2"));
-        setChartOptions(40, 5);
+        setChartOptions(40, -30, 10);
         return drawChart(chartData, chartOptions, "chart2");
     }
     if (tableType === "table3") {
         setChartData(loadData("table3"));
-        setChartOptions(10000, 1000);
+        setChartOptions(6000, 0, 1000);
         return drawChart(chartData, chartOptions, "chart3");
     }
 };
@@ -101,18 +106,18 @@ const drawChart = (data, options, chartType) => {
 const inputTestData = () => {
     //ランダムなテストデータをテーブルに入力する
     for (let i = 0; i <= 3; i++) {
-        document.getElementById(`A${i}`).value = random(1.2);
-        document.getElementById(`B${i}`).value = random(1.2);
-        document.getElementById(`C${i}`).value = random(1.2);
-        document.getElementById(`D${i}`).value = random(1.2);
+        document.getElementById(`A${i}`).value = random(19.9);
+        document.getElementById(`B${i}`).value = random(19.9);
+        document.getElementById(`C${i}`).value = random(19.9);
+        document.getElementById(`D${i}`).value = random(19.9);
         document.getElementById(`E${i}`).value = random(40);
         document.getElementById(`F${i}`).value = random(40);
         document.getElementById(`G${i}`).value = random(40);
         document.getElementById(`H${i}`).value = random(40);
-        document.getElementById(`I${i}`).value = random(10000);
-        document.getElementById(`J${i}`).value = random(10000);
-        document.getElementById(`K${i}`).value = random(10000);
-        document.getElementById(`L${i}`).value = random(10000);
+        document.getElementById(`I${i}`).value = random(6000);
+        document.getElementById(`J${i}`).value = random(6000);
+        document.getElementById(`K${i}`).value = random(6000);
+        document.getElementById(`L${i}`).value = random(6000);
     }
 };
 
