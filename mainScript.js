@@ -137,24 +137,60 @@ const getTableDataToSave = (tableType) => {
     let table = document.getElementById(tableType);
     let tableRow = table.querySelectorAll("tr");
 
-    tableRow.forEach((tr) => {
+    tableRow.forEach((tr, trIndex) => {
         // テーブルの1行(trタグ)毎に処理
         let cells = tr.querySelectorAll("td"); // セル(td)のNodeListを取得
         if (cells.length != 0) {
             // テーブルのヘッダー部分は飛ばす
-            let d = []; // テーブルの行(tr)のデータを格納する配列
-            cells.forEach((td, index) => {
+
+            let d1 = []; // テーブルの行(tr)のデータを格納する配列
+            let d2 = []; // テーブルの行(tr)のデータを格納する配列
+            let d3 = []; // テーブルの行(tr)のデータを格納する配列
+            let d4 = []; // テーブルの行(tr)のデータを格納する配列
+
+            cells.forEach((td, tdIndex) => {
                 // セル(td)毎に処理
+
+                console.log(
+                    `${td.firstElementChild.value}:${tdIndex}:${trIndex}`
+                );
+
                 if (td.innerHTML.indexOf("input") != -1) {
                     // セルがinputだった場合
-                    d.push(td.firstElementChild.value);
+                    d1.push(td.firstElementChild.value);
+                    d2.push(td.firstElementChild.value);
+                    d3.push(td.firstElementChild.value);
+                    d4.push(td.firstElementChild.value);
                 } else {
-                    d.push("");
+                    d1.push("");
                 }
             });
-            data.push(d);
+            data.push(d1);
+            data.push(d2);
+            data.push(d3);
+            data.push(d4);
         }
+        console.log("終わりの区切り");
     });
+
+    // tableRow.forEach((tr) => {
+    //     // テーブルの1行(trタグ)毎に処理
+    //     let cells = tr.querySelectorAll("td"); // セル(td)のNodeListを取得
+    //     if (cells.length != 0) {
+    //         // テーブルのヘッダー部分は飛ばす
+    //         let d = []; // テーブルの行(tr)のデータを格納する配列
+    //         cells.forEach((td, index) => {
+    //             // セル(td)毎に処理
+    //             if (td.innerHTML.indexOf("input") != -1) {
+    //                 // セルがinputだった場合
+    //                 d.push(td.firstElementChild.value);
+    //             } else {
+    //                 d.push("");
+    //             }
+    //         });
+    //         data.push(d);
+    //     }
+    // });
     let json = JSON.stringify(data, undefined, 1);
     localStorage.setItem(tableType, json);
 };
