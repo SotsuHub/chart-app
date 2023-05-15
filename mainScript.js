@@ -63,7 +63,7 @@ const settingChart = (tableId) => {
     // グラフを出力する
     if (tableId === "table1") {
         setChartData(loadData(tableId));
-        setChartOptions(0, 6, 1);
+        setChartOptions(0, 10, 1);
         return drawChart(chartData, chartOptions, "chart1");
     }
     if (tableId === "table2") {
@@ -73,7 +73,7 @@ const settingChart = (tableId) => {
     }
     if (tableId === "table3") {
         setChartData(loadData("table3"));
-        setChartOptions(0, 5000, 1000);
+        setChartOptions(0, 6000, 1000);
         return drawChart(chartData, chartOptions, "chart3");
     }
 };
