@@ -68,7 +68,7 @@ const settingChart = (tableId) => {
     }
     if (tableId === "table2") {
         setChartData(loadData("table2"));
-        setChartOptions(-30, 30, 10);
+        setChartOptions(-10, 30, 10);
         return drawChart(chartData, chartOptions, "chart2");
     }
     if (tableId === "table3") {
