@@ -1,7 +1,7 @@
 .most_top {
     display: flex;
-    font-weight: bold;
-    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
 }
 h1 {
     display: flex;
@@ -17,6 +17,22 @@ h1 {
     background: linear-gradient(to right, rgb(137, 184, 255), transparent);
     color: #545454;
 }
+img {
+    width: 47.5px;
+    height: 80px;
+    margin: 10px;
+}
+.left-button-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.left-button-container input[type="button"] {
+    margin-left: 10px;
+}
+#allClear_btn {
+    margin-left: auto;
+}
 input[type="button"] {
     color: #ffffff;
     background-color: #6d93cc;
@@ -29,11 +45,8 @@ input[type="button"] {
 input[type="button"]:hover {
     background-color: #445b7f;
 }
-img {
-    width: 47.5px;
-    height: 80px;
-    margin: 10px;
-}
+
+
 .top {
     display: flex;
     font-size: x-small;
