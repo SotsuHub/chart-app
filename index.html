@@ -2,17 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>空燃比MISSION！エージェントアプリ</title>
+        <title>グラフアプリ</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <input
+            type="button"
+            id="allClear_btn"
+            value="データクリア"
+            onclick="pushClearButton();"
+        />
         <div class="most_top">
-            <h1>空燃比MISSION！<br />エージェントアプリ</h1>
             <img
                 src="https://4.bp.blogspot.com/--SnAo60pxUA/VSufPr3wArI/AAAAAAAAs4k/JOJWuKzDJRM/s800/job_spy.png"
                 id="img"
             />
+            <h1>エージェントツール！<br />グラフアプリ</h1>
             <div class="left-button-container">
                 <input
                     type="button"
@@ -23,12 +29,10 @@
                 <input
                     type="button"
                     id="save_btn"
-                    value="新しいグラフ"
+                    value="グラフ更新"
                     onclick="pushNewDataButton();"
                 />
             </div>
-
-            <input type="button" id="allClear_btn" value="全て消去" onclick="pushClearButton();" />
         </div>
         <br />
 
@@ -75,7 +79,9 @@
             <canvas id="chart1" width="450" height="280"></canvas>
         </div>
 
-        <div class="title">F/B合計値（%）</div>
+        <div class="title">
+            F/B合計値（%） ※小数点第2位まで。第3位は切り捨て
+        </div>
 
         <div class="middle">
             <table id="table2">
@@ -118,7 +124,7 @@
             <canvas id="chart2" width="450" height="280"></canvas>
         </div>
 
-        <div class="title">燃料噴射量（μs）</div>
+        <div class="title">燃料噴射時間（μs）</div>
 
         <div class="bottom">
             <table id="table3">
@@ -165,13 +171,16 @@
             const inputAllElements = document.querySelectorAll("table input");
             const inputAllElementsArray = Array.from(inputAllElements);
 
-            const inputTable1Elements = document.querySelectorAll("#table1 input");
+            const inputTable1Elements =
+                document.querySelectorAll("#table1 input");
             const inputTable1ElementsArray = Array.from(inputTable1Elements);
 
-            const inputTable2Elements = document.querySelectorAll("#table2 input");
+            const inputTable2Elements =
+                document.querySelectorAll("#table2 input");
             const inputTable2ElementsArray = Array.from(inputTable2Elements);
 
-            const inputTable3Elements = document.querySelectorAll("#table3 input");
+            const inputTable3Elements =
+                document.querySelectorAll("#table3 input");
             const inputTable3ElementsArray = Array.from(inputTable3Elements);
         </script>
         <script src="mainScript.js"></script>
