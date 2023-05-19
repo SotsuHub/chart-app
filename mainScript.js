@@ -68,12 +68,12 @@ const settingChart = (tableId) => {
     }
     if (tableId === "table2") {
         setChartData(loadData("table2"));
-        setChartOptions(-10, 30, 10);
+        setChartOptions(-10, 50, 10);
         return drawChart(chartData, chartOptions, "chart2");
     }
     if (tableId === "table3") {
         setChartData(loadData("table3"));
-        setChartOptions(0, 6000, 1000);
+        setChartOptions(0, 7000, 1000);
         return drawChart(chartData, chartOptions, "chart3");
     }
 };
@@ -98,18 +98,18 @@ const drawChart = (data, options, chartType) => {
 const inputTestData = () => {
     //ランダムなテストデータをテーブルに入力する
     for (let i = 0; i <= 3; i++) {
-        document.getElementById(`A${i}`).value = random(5.9);
-        document.getElementById(`B${i}`).value = random(5.9);
-        document.getElementById(`C${i}`).value = random(5.9);
-        document.getElementById(`D${i}`).value = random(5.9);
-        document.getElementById(`E${i}`).value = random(30);
-        document.getElementById(`F${i}`).value = random(30);
-        document.getElementById(`G${i}`).value = random(30);
-        document.getElementById(`H${i}`).value = random(30);
-        document.getElementById(`I${i}`).value = random(5000);
-        document.getElementById(`J${i}`).value = random(5000);
-        document.getElementById(`K${i}`).value = random(5000);
-        document.getElementById(`L${i}`).value = random(5000);
+        document.getElementById(`A${i}`).value = random(9.9);
+        document.getElementById(`B${i}`).value = random(9.9);
+        document.getElementById(`C${i}`).value = random(9.9);
+        document.getElementById(`D${i}`).value = random(9.9);
+        document.getElementById(`E${i}`).value = random(49.9);
+        document.getElementById(`F${i}`).value = random(49.9);
+        document.getElementById(`G${i}`).value = random(49.9);
+        document.getElementById(`H${i}`).value = random(49.9);
+        document.getElementById(`I${i}`).value = random(7000);
+        document.getElementById(`J${i}`).value = random(7000);
+        document.getElementById(`K${i}`).value = random(7000);
+        document.getElementById(`L${i}`).value = random(7000);
     }
 };
 
