@@ -1,4 +1,4 @@
-# chart-app.io
+# graph-app.io
 
 ## このアプリは何？
 
