@@ -294,3 +294,26 @@ switches.forEach((element) => {
         pushNewDataButton();
     });
 });
+
+// 👇入力値の変換処理
+let convertToHalfWidth = (event) => {
+    let input = event.target;
+    let inputValue = input.value;
+
+    // 全角のハイフンを半角のハイフンに変換する
+    let hyphenReplaced = inputValue.replace(/ー/g, "-");
+
+    // 全角数字を半角数字に変換する
+    let digitReplaced = hyphenReplaced.replace(/[０-９]/g, (s) => {
+        return String.fromCharCode(s.charCodeAt(0) - 65248);
+    });
+
+    if (digitReplaced !== inputValue) {
+        input.value = digitReplaced;
+    }
+};
+// 入力欄にイベントリスナーを追加
+let inputs = document.querySelectorAll("input[type='text']");
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("input", convertToHalfWidth);
+}
