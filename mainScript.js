@@ -65,7 +65,7 @@ const settingGraph = (tableId) => {
     }
     if (tableId === "table2") {
         setGraphData(loadData("table2"));
-        setGraphOptions(-10, 50, 10);
+        setGraphOptions(-20, 40, 10);
         return drawGraph(graphData, graphOptions, "graph2");
     }
     if (tableId === "table3") {
@@ -92,10 +92,10 @@ const inputTestData = () => {
         document.getElementById(`B${i}`).value = random(9.9);
         document.getElementById(`C${i}`).value = random(9.9);
         document.getElementById(`D${i}`).value = random(9.9);
-        document.getElementById(`E${i}`).value = random(49.9);
-        document.getElementById(`F${i}`).value = random(49.9);
-        document.getElementById(`G${i}`).value = random(49.9);
-        document.getElementById(`H${i}`).value = random(49.9);
+        document.getElementById(`E${i}`).value = random(39.9);
+        document.getElementById(`F${i}`).value = random(39.9);
+        document.getElementById(`G${i}`).value = random(39.9);
+        document.getElementById(`H${i}`).value = random(39.9);
         document.getElementById(`I${i}`).value = random(7000);
         document.getElementById(`J${i}`).value = random(7000);
         document.getElementById(`K${i}`).value = random(7000);
