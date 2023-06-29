@@ -242,6 +242,25 @@ let graphLineIsVisible = [true, true, true, true];
 
 // 👇ページ読み込み時の処理
 inputTableData();
+
+// ローカルストレージに値が保存されていない場合、空白を保存する
+const DEFAULT_TABLE_DATA = [
+    ["", "", "", ""],
+    ["", "", "", ""],
+    ["", "", "", ""],
+    ["", "", "", ""],
+];
+const tableData = {
+    table1: DEFAULT_TABLE_DATA,
+    table2: DEFAULT_TABLE_DATA,
+    table3: DEFAULT_TABLE_DATA,
+};
+for (const [key, value] of Object.entries(tableData)) {
+    if (!localStorage.getItem(key)) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+}
+
 myGraph_table1 = settingGraph("table1");
 myGraph_table2 = settingGraph("table2");
 myGraph_table3 = settingGraph("table3");
