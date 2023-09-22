@@ -267,6 +267,9 @@ myGraph_table3 = settingGraph("table3");
 
 // 👇ランダム入力ボタン処理
 function pushTestButton() {
+    if (!confirm("本当にランダムデータを入力しますか？")) {
+        return;
+    }
     inputTestData();
     saveTableDataToLocalStorage("table1");
     saveTableDataToLocalStorage("table2");
